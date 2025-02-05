@@ -3,16 +3,13 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import infoRoutes from './src/routes/info';
-import authRoutes from './src/routes/auth';
-import projectRoutes from './src/routes/project';
-import hotReloadMiddleware from '@devmade/express-hot-reload';
+import infoRoutes from './routes/info';
+import authRoutes from './routes/auth';
+import projectRoutes from './routes/project';
 
 dotenv.config();
 
 const app = express();
-app.use(hotReloadMiddleware({ watchFolders: ["./src"] }));
-
 const PORT = process.env.PORT || 8081;
 
 app.use(cors());

@@ -8,4 +8,5 @@ router.get('/', async (_req: APIRequest<{}>, res: Response) => {
     res.json({ message: 'Welcome to the API' });
 });
 
+//test
 export default router;

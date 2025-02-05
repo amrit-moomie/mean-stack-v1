@@ -45,6 +45,7 @@ router.post('/login', async (req: APIRequest<AuthRegisterRequestBody>, res: Resp
         });
 
         // Return success response
+        //test
         res.json({ token });
     } catch (error: unknown) {
         res.status(400).json({ error: error instanceof Error ? error.message : 'An unexpected error occurred' });

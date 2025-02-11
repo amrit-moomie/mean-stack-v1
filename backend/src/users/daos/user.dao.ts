@@ -5,23 +5,30 @@ import { CreateUserDto } from '../dto/create.user.dto';
 import { PatchUserDto } from '../dto/patch.user.dto';
 import { PutUserDto } from '../dto/put.user.dto';
 import { PermissionFlag } from '../../common/middleware/common.permissionflag.enum';
+import { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 const log: debug.IDebugger = debug('app:users-dao');
 
 class UsersDao {
-    Schema = mongooseService.getMongoose().Schema;
+    // Schema = mongooseService.getMongoose().Schema;
 
-    userSchema = new this.Schema({
-        _id: String,
-        email: String,
-        password: { type: String, select: false },
-        firstName: String,
-        lastName: String,
-        permissionFlags: Number,
-    }, { id: false });
+    // userSchema = new this.Schema({
+    //     _id: String,
+    //     email: String,
+    //     password: { type: String, select: false },
+    //     firstName: String,
+    //     lastName: String,
+    //     permissionFlags: Number,
+    // }, { id: false });
 
-    User = mongooseService.getMongoose().model('Users', this.userSchema);
+    userSchema = new Schema({
+        username: { type: String, required: true, unique: true },
+        email: { type: String, required: true, unique: true },
+        password: { type: String, required: true },
+    });
 
+    User = mongoose.model('User', this.userSchema)
     constructor() {
         log('Created new instance of UsersDao');
     }
